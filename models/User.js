@@ -1,49 +1,53 @@
-const mongoose = require('mongoose');
-const httpStatus = require('http-status');
-const APIError = require('../helpers/APIError');
+const mongoose = require("mongoose");
+const httpStatus = require("http-status");
+const APIError = require("../helpers/APIError");
 
 const Schema = mongoose.Schema;
 
-const UserScema = new Schema({
+const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
-    match: [/[\w]+?@[\w]+?\.[a-z]{2,4}/, 'The value of path {PATH} ({VALUE}) is not a valid email address.']
+    match: [
+      /[\w]+?@[\w]+?\.[a-z]{2,4}/,
+      "The value of path {PATH} ({VALUE}) is not a valid email address.",
+    ],
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   first_name: {
     type: String,
-    required: true
+    required: true,
   },
   last_name: {
     type: String,
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
+
 /**
  * Statics
  */
-UserScema.statics = {
+UserSchema.statics = {
   /**
    * Get user
    * @param {ObjectId} id - The objectId of user.
    * @returns {Promise<User, APIError>}
    */
-  get (id) {
+  get(id) {
     return this.findById(id)
       .exec()
-      .then(user => {
+      .then((user) => {
         if (user) {
           return user;
         }
-        const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
+        const err = new APIError("No such user exists!", httpStatus.NOT_FOUND);
         return Promise.reject(err);
       });
   },
@@ -54,12 +58,13 @@ UserScema.statics = {
    * @param {number} limit - Limit number of users to be returned.
    * @returns {Promise<User[]>}
    */
-  list ({ skip = 0, limit = 50 } = {}) {
+  list({ skip = 0, limit = 50 } = {}) {
     return this.find()
       .sort({ createdAt: -1 })
       .skip(+skip)
       .limit(+limit)
       .exec();
-  }
+  },
 };
-module.exports = mongoose.model('user', UserScema);
+
+module.exports = mongoose.model("User", UserSchema);

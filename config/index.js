@@ -26,7 +26,7 @@ const config = {
 
 if (process.env.NODE_ENV === "production") {
   console.log("production");
-  config.mongoUri = "";
+  config.mongoUri = "mongodb://localhost/shopping-cart-api";
 } else {
   console.log("DEV");
   config.mongoUri = "mongodb://localhost/shopping-cart-api";
