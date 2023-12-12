@@ -67,7 +67,7 @@ const OrderScema = new Schema({
     },
     country: {
       type: String,
-      default: "Bangladesh",
+      default: "Netherlands",
     },
   },
   shippingMethod: {
