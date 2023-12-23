@@ -55,11 +55,11 @@ const OrderScema = new Schema({
     },
     postCode: {
       type: String,
-      required: true,
-      match: [
-        /[\d]{4,5}/,
-        "The value of path {PATH} ({VALUE}) is not a valid post code.",
-      ],
+      // required: true,
+      // match: [
+      //   /[\d]{4,5}/,
+      //   "The value of path {PATH} ({VALUE}) is not a valid post code.",
+      // ],
     },
     district: {
       type: String,
