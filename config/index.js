@@ -32,10 +32,13 @@ const config = {
 
 if (process.env.NODE_ENV === "production") {
   console.log("production");
-  config.mongoUri = "mongodb://localhost/shopping-cart-api";
+  config.mongoUri =
+    "mongodb+srv://var434:OIHi239@cluster0.8oaycts.mongodb.net/?retryWrites=true&w=majority";
 } else {
   console.log("DEV");
-  config.mongoUri = "mongodb://localhost/shopping-cart-api";
+  // config.mongoUri = "mongodb://localhost/shopping-cart-api";
+  config.mongoUri =
+    "mongodb+srv://var434:OIHi239@cluster0.8oaycts.mongodb.net/?retryWrites=true&w=majority";
 }
 
 module.exports = config;
